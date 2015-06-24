@@ -21,4 +21,9 @@ angular.module('mainApp',[])
             url: "request.jsp"
         }
     ];
+}]).controller('PeopleController', ['$scope','$http', function($scope, $http) {
+        $http.get('client/').success(function(data) {
+            $scope.peoples = data;
+            console.log($scope.peoples);
+        });
 }]);

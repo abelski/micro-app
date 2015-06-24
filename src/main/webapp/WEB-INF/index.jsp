@@ -95,27 +95,33 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
+
+        <div id="page-wrapper" ng-controller="PeopleController ">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">MAIN</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+
+
             <div id="col-lg-12">
+                <div class="col-lg-4" ng-repeat="people in peoples ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> {{people.name}}
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           phone: {{people.phone}}
+                        </div>
 
-
-
-                <input type="number" ng-model="num">
-                <hr>
-                <h1>{{num + 1}}</h1>
+                    </div>
+                </div>
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
 
-    </div>
+
+
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->

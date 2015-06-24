@@ -19,9 +19,9 @@ public class ClientController {
     @RequestMapping("/")
     public List<Client> getAll(){
         final ArrayList<Client> clients = new ArrayList<Client>();
-        clients.add(new Client("Bob"));
-        clients.add(new Client("Peter"));
-        clients.add(new Client("Sam"));
+        clients.add(new Client("Bob", "777"));
+        clients.add(new Client("Peter", "777"));
+        clients.add(new Client("Sam", "777"));
         return clients;
     }
 }
