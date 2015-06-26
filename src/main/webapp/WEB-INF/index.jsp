@@ -106,8 +106,7 @@
                         <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
-                                    <%--<i class="fa fa-search"></i>--%>
-                                    FIND
+                                    <i class="fa fa-search"></i>
                                 </button>
                             </span>
                     </div>
@@ -122,18 +121,12 @@
 
         <div class="row">
             <div id="col-lg-12">
-                <div class="col-lg-4" ng-repeat="people in peoples ">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> {{people.name}}
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            phone: {{people.phone}}
-                        </div>
 
-                    </div>
+                <div class="col-lg-4" ng-repeat="people in peoples ">
+                    {{people}}
+                    <people-card people="people"/>
                 </div>
+
             </div>
         </div>
 

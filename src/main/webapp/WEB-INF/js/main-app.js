@@ -25,4 +25,15 @@ angular.module('mainApp',[])
         $http.get('client/').success(function(data) {
             $scope.peoples = data;
         });
-}]);
+}]).directive('peopleCard', function() {
+        return {
+            restrict: 'E',
+            scope:{
+                people : '=people'
+            },
+            templateUrl: 'people-card.html'
+        };
+    })
+
+
+;
