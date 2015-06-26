@@ -19,7 +19,12 @@ angular.module('mainApp',[])
         },{
             title : "request",
             url: "request.jsp"
+        },
+        $scope.find = function(){
+            $scope.text = '123123';
+            $scope.peoples = {};
         }
+
     ];
 }]).controller('PeopleController', ['$scope','$http', function($scope, $http) {
         $http.get('client/').success(function(data) {

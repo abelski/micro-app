@@ -96,16 +96,16 @@
     </nav>
 
 
-    <div id="page-wrapper" ng-controller="PeopleController ">
+    <div id="page-wrapper" ng-controller="MainController ">
         <div class="row">
 
             <div class="col-lg-12">
                 <div class="panel">
 
                     <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" placeholder="Search..." ng-model="text">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button class="btn btn-default" type="button" ng-click="find()">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -115,11 +115,11 @@
                 </div>
             </div>
 
-
+            {{ 'Поиск по значению '+ text}}
             <!-- /.col-lg-12 -->
         </div>
 
-        <div class="row">
+        <div class="row" ng-controller="PeopleController ">
             <div id="col-lg-12">
 
                 <div class="col-lg-4" ng-repeat="people in peoples ">
