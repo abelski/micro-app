@@ -11,25 +11,31 @@ angular.module('mainApp',[])
     function(){
         console.log('run')
     }
-).controller('MainController', ['$scope', function($scope) {
-    $scope.menu = [
-        {
-            title : "peoples",
-            url: "people.jsp"
-        },{
-            title : "request",
-            url: "request.jsp"
-        },
+).controller('MainController', ['$scope', '$http', function($scope, $http) {
+        $scope.menu = [
+            {
+                title: "peoples",
+                url: "people.jsp"
+            }, {
+                title: "request",
+                url: "request.jsp"
+            },
+        ];
         $scope.find = function(){
-            $scope.text = '123123';
-            $scope.peoples = {};
-        }
+            $http.get('client/' + $scope.findText).success(function(data) {
+                $scope.peoples = data.peoples
+                console.log(data);
+                $scope.peoples = data;
+            });
 
-    ];
-}]).controller('PeopleController', ['$scope','$http', function($scope, $http) {
+        };
+
         $http.get('client/').success(function(data) {
+            $scope.peoples = data.peoples
+            console.log(data);
             $scope.peoples = data;
         });
+
 }]).directive('peopleCard', function() {
         return {
             restrict: 'E',
