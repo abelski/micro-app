@@ -52,7 +52,6 @@
         <!-- /.navbar-header -->
 
 
-
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -118,6 +117,10 @@
             <!-- Custom Theme JavaScript -->
             <script src="js/sb-admin-2.js"></script>
 
+
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
