@@ -39,7 +39,17 @@ angular.module('mainApp', [])
             scope: {
                 people: '=people'
             },
-            templateUrl: 'people-card.html'
+            templateUrl: 'directive/people-card.html'
+        };
+    }).directive('peopleFind', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directive/people-find.html'
+        };
+    }).directive('peopleModal', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directive/people-modal.html'
         };
     })
 

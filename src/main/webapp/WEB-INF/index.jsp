@@ -101,49 +101,43 @@
 
 
             <div class="row">
+                <people-find/>
+            </div>
 
-                <div class="col-lg-12">
-                    <div class="panel-body">
+            <div class="row">
+                <div class="panel-body">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeopleModal">
+                        Create
+                    </button>
+                </div>
+                <people-modal/>
+            </div>
 
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..." ng-model="findText" ng-change="find()" ng-model-options="{ debounce: 1000 }"/>
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="find()">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
+            <div class="row">
+                <div id="col-lg-12">
+
+                    <div class="col-lg-4" ng-repeat="people in peoples ">
+                        <people-card people="people"/>
                     </div>
+
                 </div>
-
-                <!-- /.col-lg-12 -->
             </div>
-        </div>
-
-        <div class="row">
-            <div id="col-lg-12">
-
-                <div class="col-lg-4" ng-repeat="people in peoples ">
-                    <people-card people="people"/>
-                </div>
-
-            </div>
-        </div>
 
 
-        <!-- /#wrapper -->
+            <!-- /#wrapper -->
 
-        <!-- jQuery Version 1.11.0 -->
-        <script src="js/jquery-1.11.0.js"></script>
+            <!-- jQuery Version 1.11.0 -->
+            <script src="js/jquery-1.11.0.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="js/sb-admin-2.js"></script>
+            <!-- Custom Theme JavaScript -->
+            <script src="js/sb-admin-2.js"></script>
 
 </body>
 
