@@ -1,17 +1,16 @@
 /**
  * Created by user on 22.06.2015.
  */
-angular.module('mainApp',[])
-.config(
-    function(){
-        console.log('conf')
+angular.module('mainApp', [])
+    .config(
+    function () {
     }
 )
-.run(
-    function(){
+    .run(
+    function () {
         console.log('run')
     }
-).controller('MainController', ['$scope', '$http', function($scope, $http) {
+).controller('MainController', ['$scope', '$http', function ($scope, $http) {
         $scope.menu = [
             {
                 title: "peoples",
@@ -21,26 +20,24 @@ angular.module('mainApp',[])
                 url: "request.jsp"
             },
         ];
-        $scope.find = function(){
-            $http.get('client/' + $scope.findText).success(function(data) {
+        $scope.find = function () {
+            $http.post('client/search', {search: $scope.findText}).success(function (data) {
                 $scope.peoples = data.peoples
-                console.log(data);
                 $scope.peoples = data;
             });
 
         };
 
-        $http.get('client/').success(function(data) {
+        $http.get('client/').success(function (data) {
             $scope.peoples = data.peoples
-            console.log(data);
             $scope.peoples = data;
         });
 
-}]).directive('peopleCard', function() {
+    }]).directive('peopleCard', function () {
         return {
             restrict: 'E',
-            scope:{
-                people : '=people'
+            scope: {
+                people: '=people'
             },
             templateUrl: 'people-card.html'
         };

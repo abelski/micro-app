@@ -1,13 +1,14 @@
 package by.abelski.microapp.web;
 
+import by.abelski.microapp.dao.ClientDao;
 import by.abelski.microapp.model.Client;
+import by.abelski.microapp.web.request.FilterRequest;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -15,27 +16,20 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/client")
+@Data
 public class ClientController {
+    @Autowired
+    private ClientDao clientDao;
 
     @ResponseBody
     @RequestMapping("/")
-    public List<Client> getAll(){
-        final ArrayList<Client> clients = new ArrayList<Client>();
-        clients.add(new Client("Bob", "777"));
-        clients.add(new Client("Peter", "777"));
-        clients.add(new Client("Sam", "777"));
-        return clients;
+    public List<Client> getAll() {
+        return clientDao.getClients();
     }
 
     @ResponseBody
-    @RequestMapping("/{find}")
-    public List<Client> getAll(@PathVariable(value = "find") String find){
-        final ArrayList<Client> clients = new ArrayList<Client>();
-        System.out.println(find);
-
-        clients.add(new Client("Bob", "777"));
-        clients.add(new Client("Peter", "777"));
-
-        return clients;
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public List<Client> search(@RequestBody FilterRequest request) {
+        return clientDao.getClients(request.getSearch());
     }
 }
