@@ -27,6 +27,14 @@ angular.module('mainApp', [])
             });
 
         };
+        $scope.save = function () {
+            var request = $scope.activePeople;
+            console.log(request);
+
+            $http.put('client/', request).success(function(){
+                $scope.find();
+            });
+        }
 
         $http.get('client/').success(function (data) {
             $scope.peoples = data.peoples

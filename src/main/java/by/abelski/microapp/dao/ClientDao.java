@@ -35,4 +35,8 @@ public class ClientDao {
         }
         return result;
     }
+
+    public void add(Client client) {
+        clients.add(client);
+    }
 }
