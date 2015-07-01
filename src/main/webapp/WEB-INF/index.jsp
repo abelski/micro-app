@@ -106,7 +106,7 @@
                     <div class="panel-body">
 
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..." ng-model="findText" ng-change="find()"/>
+                            <input type="text" class="form-control" placeholder="Search..." ng-model="findText" ng-change="find()" ng-model-options="{ debounce: 1000 }"/>
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" ng-click="find()">
                                     <i class="fa fa-search"></i>
