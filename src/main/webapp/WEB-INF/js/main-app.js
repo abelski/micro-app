@@ -28,7 +28,7 @@ angular.module('mainApp', [])
 
         };
         $scope.edit = function (people) {
-            $scope.activePeople = people;
+            $scope.activePeople = angular.copy(people);
             $scope.action='EDIT';
         };
         $scope.delete = function (people) {
