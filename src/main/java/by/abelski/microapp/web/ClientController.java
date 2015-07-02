@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Artur Belski
@@ -23,8 +23,8 @@ public class ClientController {
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Client> getAll() {
-        return clientDao.getClients();
+    public Collection<Client> getAll() {
+        return clientDao.getClients().values();
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -33,10 +33,16 @@ public class ClientController {
         clientDao.add(client);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable String id) {
+        clientDao.delete(id);
+    }
+
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public List<Client> search(@RequestBody FilterRequest request) {
-        if(request == null || request.getSearch() == null) return getAll();
+    public Collection<Client> search(@RequestBody FilterRequest request) {
+        if (request == null || request.getSearch() == null) return getAll();
         return clientDao.getClients(request.getSearch());
     }
 }

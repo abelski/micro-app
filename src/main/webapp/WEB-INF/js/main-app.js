@@ -27,14 +27,21 @@ angular.module('mainApp', [])
             });
 
         };
-        $scope.save = function () {
-            var request = $scope.activePeople;
-            console.log(request);
-
-            $http.put('client/', request).success(function(){
+        $scope.edit = function (people) {
+            $scope.activePeople = people;
+            $scope.action='EDIT';
+        };
+        $scope.delete = function (people) {
+                $http.delete('client/' + people.id).success(function () {
                 $scope.find();
             });
-        }
+        };
+        $scope.save = function () {
+            var request = $scope.activePeople;
+            $http.put('client/', request).success(function () {
+                $scope.find();
+            });
+        };
 
         $http.get('client/').success(function (data) {
             $scope.peoples = data.peoples
@@ -44,9 +51,6 @@ angular.module('mainApp', [])
     }]).directive('peopleCard', function () {
         return {
             restrict: 'E',
-            scope: {
-                people: '=people'
-            },
             templateUrl: 'directive/people-card.html'
         };
     }).directive('peopleFind', function () {

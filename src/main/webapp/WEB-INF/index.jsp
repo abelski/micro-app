@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="panel-body">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeopleModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeopleModal" ng-click="action='CREATE'; activePeople={id:''}">
                         Create
                     </button>
                 </div>
