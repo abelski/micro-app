@@ -1,6 +1,6 @@
 package by.abelski.microapp.web;
 
-import by.abelski.microapp.dao.ClientDao;
+import by.abelski.microapp.dao.IClientDao;
 import by.abelski.microapp.model.Client;
 import by.abelski.microapp.web.request.FilterRequest;
 import lombok.Data;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -19,18 +20,13 @@ import java.util.Collection;
 @Data
 public class ClientController {
     @Autowired
-    private ClientDao clientDao;
-
-    @ResponseBody
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Collection<Client> getAll() {
-        return clientDao.getClients().values();
-    }
+    private IClientDao clientDao;
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public void save(@RequestBody Client client) {
-        clientDao.add(client);
+        System.out.println(client);
+        clientDao.save(client);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -43,6 +39,17 @@ public class ClientController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Collection<Client> search(@RequestBody FilterRequest request) {
         if (request == null || request.getSearch() == null) return getAll();
-        return clientDao.getClients(request.getSearch());
+        return clientDao.findByNameLikeOrPhoneLike(request.getSearch(), request.getSearch());
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Collection<Client> getAll() {
+        final Iterable<Client> all = clientDao.findAll();
+        final ArrayList<Client> clients = new ArrayList<Client>();
+        for (Client client : all) {
+            clients.add(client);
+        }
+        return clients;
     }
 }
