@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">MICRO CRUD APP</a>
+            <a class="navbar-brand">MICRO CRUD APP</a>
         </div>
         <!-- /.navbar-header -->
 
