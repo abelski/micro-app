@@ -1,4 +1,4 @@
-package by.abelski.microapp.web.request;
+package com.egx.citanda.web.request;
 
 import lombok.Data;
 

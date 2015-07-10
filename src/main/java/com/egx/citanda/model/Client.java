@@ -1,4 +1,4 @@
-package by.abelski.microapp.model;
+package com.egx.citanda.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +17,5 @@ public class Client {
    @Id
    private String id;
    private String name;
-   private String phone;
+   private IClientInfo clientInfo;
 }

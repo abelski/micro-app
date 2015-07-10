@@ -11,57 +11,49 @@ angular.module('mainApp', [])
         console.log('run')
     }
 ).controller('MainController', ['$scope', '$http', function ($scope, $http) {
-        $scope.menu = [
-            {
-                title: "peoples",
-                url: "people.jsp"
-            }, {
-                title: "request",
-                url: "request.jsp"
-            },
-        ];
+
         $scope.find = function () {
-            $http.post('client/search', {search: $scope.findText}).success(function (data) {
-                $scope.peoples = data.peoples
-                $scope.peoples = data;
+            $http.post('tender/search', {search: $scope.findText}).success(function (data) {
+                $scope.tenders = data.tenders
+                $scope.tenders = data;
             });
 
         };
         $scope.edit = function (people) {
-            $scope.activePeople = angular.copy(people);
+            $scope.activeTender = angular.copy(people);
             $scope.action='EDIT';
         };
         $scope.delete = function (people) {
-                $http.delete('client/' + people.id).success(function () {
+                $http.delete('tender/' + tender.id).success(function () {
                 $scope.find();
             });
         };
         $scope.save = function () {
-            var request = $scope.activePeople;
-            $http.put('client/', request).success(function () {
+            var request = $scope.activeTender;
+            $http.put('tender/', request).success(function () {
                 $scope.find();
             });
         };
 
         $http.get('client/').success(function (data) {
-            $scope.peoples = data.peoples
-            $scope.peoples = data;
+            $scope.tenders = data.tenders
+            $scope.tenders = data;
         });
 
-    }]).directive('peopleCard', function () {
+    }]).directive('tenderCard', function () {
         return {
             restrict: 'E',
-            templateUrl: 'directive/people-card.html'
+            templateUrl: 'directive/tender-card.html'
         };
-    }).directive('peopleFind', function () {
+    }).directive('tenderFind', function () {
         return {
             restrict: 'E',
-            templateUrl: 'directive/people-find.html'
+            templateUrl: 'directive/tender-find.html'
         };
-    }).directive('peopleModal', function () {
+    }).directive('tenderModal', function () {
         return {
             restrict: 'E',
-            templateUrl: 'directive/people-modal.html'
+            templateUrl: 'directive/tender-modal.html'
         };
     })
 

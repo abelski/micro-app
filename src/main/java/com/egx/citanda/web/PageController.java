@@ -1,4 +1,4 @@
-package by.abelski.microapp.web;
+package com.egx.citanda.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

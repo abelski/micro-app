@@ -1,8 +1,8 @@
-package by.abelski.microapp.web;
+package com.egx.citanda.web;
 
-import by.abelski.microapp.dao.IClientDao;
-import by.abelski.microapp.model.Client;
-import by.abelski.microapp.web.request.FilterRequest;
+import com.egx.citanda.dao.IClientDao;
+import com.egx.citanda.model.Client;
+import com.egx.citanda.web.request.FilterRequest;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

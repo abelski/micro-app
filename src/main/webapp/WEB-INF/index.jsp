@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="abelski@tut.by">
 
-    <title>MicroApp</title>
+    <title>CITANDA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,24 +79,24 @@
 
 
             <div class="row">
-                <people-find/>
+                <tender-find/>
             </div>
 
             <div class="row">
                 <div class="panel-body">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PeopleModal" ng-click="action='CREATE'; activePeople={}">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal" ng-click="action='CREATE'; activeTender={}">
                         Create
                     </button>
                 </div>
-                <people-modal/>
+                <tender-modal/>
             </div>
 
             <div class="row">
                 <div id="col-lg-12">
 
-                    <div class="col-lg-4" ng-repeat="people in peoples ">
-                        <people-card people="people"/>
+                    <div class="col-lg-4" ng-repeat="tender in tenders ">
+                        <tender-card tender="tender"/>
                     </div>
 
                 </div>

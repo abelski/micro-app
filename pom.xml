@@ -4,11 +4,11 @@
 
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.springapp</groupId>
-    <artifactId>MicroApp</artifactId>
+    <groupId>com.egx</groupId>
+    <artifactId>Citanda</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>MicroApp</name>
+    <name>Citanda</name>
 
     <repositories>
         <repository>
@@ -21,7 +21,6 @@
             <name>Spring Maven Milestone Repository</name>
             <url>http://maven.springframework.org/milestone</url>
         </repository>
-
     </repositories>
     <pluginRepositories>
         <pluginRepository>

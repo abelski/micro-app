@@ -1,6 +1,6 @@
-package by.abelski.microapp.dao;
+package com.egx.citanda.dao;
 
-import by.abelski.microapp.model.Client;
+import com.egx.citanda.model.Client;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
