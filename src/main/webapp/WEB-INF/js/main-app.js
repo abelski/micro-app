@@ -35,7 +35,7 @@ angular.module('mainApp', [])
             });
         };
 
-        $http.get('client/').success(function (data) {
+        $http.get('tender/').success(function (data) {
             $scope.tenders = data.tenders
             $scope.tenders = data;
         });

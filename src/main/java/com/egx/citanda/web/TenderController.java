@@ -31,6 +31,13 @@ public class TenderController {
         tenderDao.save(client);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public Iterable<Tender> search(@RequestBody FilterRequest request) {
+        if (request == null || request.getSearch() == null) return getAll();
+        return getAll();
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String id) {

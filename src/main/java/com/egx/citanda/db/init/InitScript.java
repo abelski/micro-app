@@ -16,6 +16,7 @@ public class InitScript {
         final Tender tender = new Tender();
         final TenderRequest tenderRequest = new TenderRequest();
         tenderRequest.setName("Some stuff");
+        tenderRequest.setCnt(12l);
 
         final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();
         from.setName("Client1");
