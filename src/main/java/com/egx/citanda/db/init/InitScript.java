@@ -15,7 +15,7 @@ public class InitScript {
     public void set1(MongoTemplate mongoTemplate) {
         final Tender tender = new Tender();
         final TenderRequest tenderRequest = new TenderRequest();
-        tenderRequest.setName("Some stuff");
+        tenderRequest.setName("New Some stuff");
         tenderRequest.setCnt(12l);
 
         final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();

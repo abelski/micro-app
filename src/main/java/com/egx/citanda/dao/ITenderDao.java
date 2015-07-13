@@ -10,4 +10,5 @@ import java.util.List;
  * @author Artur Belski
  */
 public interface ITenderDao extends PagingAndSortingRepository<Tender, String> {
+    public List<Tender> findByTenderRequestFromNameLikeOrTenderRequestNameLike(String tenderRequestFromName, String tenderRequestName);
 }
