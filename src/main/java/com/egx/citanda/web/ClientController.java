@@ -37,9 +37,9 @@ public class ClientController {
 
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public Collection<Client> search(@RequestBody FilterRequest request) {
+    public Iterable<Client> search(@RequestBody FilterRequest request) {
         if (request == null || request.getSearch() == null) return getAll();
-        return clientDao.findByNameLikeOrPhoneLike(request.getSearch(), request.getSearch());
+        return clientDao.findAll();
     }
 
     @ResponseBody

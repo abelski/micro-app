@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * @author Artur Belski
  */
@@ -17,6 +19,6 @@ public class Tender {
     @Id
     private String id;
     private TenderRequest tenderRequest;
-    private TenderOffer tenderOffer;
+    private List<TenderOffer> tenderOffers;
 
 }

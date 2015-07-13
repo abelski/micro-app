@@ -44,7 +44,7 @@
     <!-- MongoTemplate instance -->
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="microapp"/>
+        <constructor-arg name="databaseName" value="citanda"/>
         <!--<constructor-arg name="userCredentials" ref="usc"/>-->
 
     </bean>
@@ -54,5 +54,12 @@
     <!--<constructor-arg name="password" value="${db.pass}"/>-->
     <!--</bean>-->
 
-    <mongo:repositories base-package="com.egx.citanda"/>
+    <mongo:repositories base-package="com.egx.citanda.dao"/>
+
+    <bean id="mongobee" class="com.github.mongobee.Mongobee">
+        <property name="dbName" value="citanda"/>
+        <property name="enabled" value="true"/>
+        <property name="changeLogsScanPackage"
+                  value="com.egx.citanda.db.init"/>
+    </bean>
 </beans>

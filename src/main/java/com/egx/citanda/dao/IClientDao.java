@@ -9,5 +9,5 @@ import java.util.List;
  * @author Artur Belski
  */
 public interface IClientDao extends PagingAndSortingRepository<Client, String> {
-    List<Client> findByNameLikeOrPhoneLike(String name, String phone);
+
 }
