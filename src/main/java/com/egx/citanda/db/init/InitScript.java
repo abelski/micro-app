@@ -27,10 +27,19 @@ public class InitScript {
         to.setName("Client2");
         tenderRequest.setTo(to);
 
+
         tender.setTenderRequest(tenderRequest);
         final TenderOffer tenderOffer = new TenderOffer();
+        tenderOffer.setName("New Some stuff");
+        tenderOffer.setCnt(12l);
+        tenderOffer.setFrom(from);
         tender.getTenderOffers().add(tenderOffer);
+
         final TenderOffer tenderOffer1 = new TenderOffer();
+        tenderOffer1.setName("New Some stuff");
+        tenderOffer1.setCnt(12l);
+        tenderOffer1.setFrom(from);
+
         mongoTemplate.save(tenderOffer);
         mongoTemplate.save(tenderOffer1);
         tender.getTenderOffers().add(tenderOffer1);
