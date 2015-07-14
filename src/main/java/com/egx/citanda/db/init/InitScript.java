@@ -1,6 +1,7 @@
 package com.egx.citanda.db.init;
 
 import com.egx.citanda.model.Tender;
+import com.egx.citanda.model.TenderOffer;
 import com.egx.citanda.model.TenderRequest;
 import com.github.mongobee.changeset.ChangeLog;
 import com.github.mongobee.changeset.ChangeSet;
@@ -27,6 +28,12 @@ public class InitScript {
         tenderRequest.setTo(to);
 
         tender.setTenderRequest(tenderRequest);
+        final TenderOffer tenderOffer = new TenderOffer();
+        tender.getTenderOffers().add(tenderOffer);
+        final TenderOffer tenderOffer1 = new TenderOffer();
+        mongoTemplate.save(tenderOffer);
+        mongoTemplate.save(tenderOffer1);
+        tender.getTenderOffers().add(tenderOffer1);
         mongoTemplate.save(tender);
     }
 }
