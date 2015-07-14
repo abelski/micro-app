@@ -19,10 +19,23 @@ angular.module('mainApp', [])
             });
 
         };
-        $scope.edit = function (people) {
-            $scope.activeTender = angular.copy(people);
+        $scope.edit = function (tender) {
+            $scope.activeTender = angular.copy(tender);
             $scope.action='EDIT';
         };
+
+        $scope.accept = function (tender, offer) {
+            $http.get('tender/accept/' + tender.id+'/'+offer.id).success(function () {
+                $scope.find();
+            });
+        };
+
+        $scope.decline = function (tender, offer) {
+            $http.get('tender/decline/' + tender.id+'/'+offer.id).success(function () {
+                $scope.find();
+            });
+        };
+
         $scope.delete = function (people) {
                 $http.delete('tender/' + tender.id).success(function () {
                 $scope.find();

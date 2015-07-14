@@ -1,9 +1,11 @@
 package com.egx.citanda.web;
 
-import com.egx.citanda.dao.IClientDao;
 import com.egx.citanda.dao.ITenderDao;
-import com.egx.citanda.model.Client;
+import com.egx.citanda.dao.ITenderOfferDao;
 import com.egx.citanda.model.Tender;
+import com.egx.citanda.model.TenderOffer;
+import com.egx.citanda.model.TenderOfferStatus;
+import com.egx.citanda.model.TenderRequestStatus;
 import com.egx.citanda.web.request.FilterRequest;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Artur Belski
@@ -23,6 +24,9 @@ import java.util.Collection;
 public class TenderController {
     @Autowired
     private ITenderDao tenderDao;
+
+    @Autowired
+    private ITenderOfferDao offerDao;
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/", method = RequestMethod.PUT)
@@ -48,5 +52,36 @@ public class TenderController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Iterable<Tender> getAll() {
         return tenderDao.findAll();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "accept/{tenderId}/{offerId}", method = RequestMethod.GET)
+    public void accept(@PathVariable String tenderId, @PathVariable String offerId) {
+        final Tender tender = tenderDao.findOne(tenderId);
+        final List<TenderOffer> tenderOffers = tender.getTenderOffers();
+        for (TenderOffer tenderOffer : tenderOffers) {
+            if (tenderOffer.getId().equals(offerId)) {
+                tenderOffer.setStatus(TenderOfferStatus.ACCEPTED);
+            } else {
+                tenderOffer.setStatus(TenderOfferStatus.DECLINED);
+            }
+            offerDao.save(tenderOffer);
+            tender.getTenderRequest().setStatus(TenderRequestStatus.ENDED);
+            tenderDao.save(tender);
+
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "decline/{tenderId}/{offerId}", method = RequestMethod.GET)
+    public void decline(@PathVariable String tenderId, @PathVariable String offerId) {
+        final Tender tender = tenderDao.findOne(tenderId);
+        final List<TenderOffer> tenderOffers = tender.getTenderOffers();
+        for (TenderOffer tenderOffer : tenderOffers) {
+            if (tenderOffer.getId().equals(offerId)) {
+                tenderOffer.setStatus(TenderOfferStatus.DECLINED);
+                offerDao.save(tenderOffer);
+            }
+        }
     }
 }
