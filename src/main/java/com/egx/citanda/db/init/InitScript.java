@@ -1,8 +1,6 @@
 package com.egx.citanda.db.init;
 
-import com.egx.citanda.model.Tender;
-import com.egx.citanda.model.TenderOffer;
-import com.egx.citanda.model.TenderRequest;
+import com.egx.citanda.model.*;
 import com.github.mongobee.changeset.ChangeLog;
 import com.github.mongobee.changeset.ChangeSet;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,6 +16,7 @@ public class InitScript {
         final TenderRequest tenderRequest = new TenderRequest();
         tenderRequest.setName("New Some stuff");
         tenderRequest.setCnt(12l);
+        tenderRequest.setStatus(TenderRequestStatus.STARTED);
 
         final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();
         from.setName("Client1");
@@ -33,6 +32,7 @@ public class InitScript {
         tenderOffer.setName("New Some stuff");
         tenderOffer.setCnt(12l);
         tenderOffer.setFrom(from);
+        tenderOffer.setStatus(TenderOfferStatus.NOT_SELECTED);
         tender.getTenderOffers().add(tenderOffer);
 
         final TenderOffer tenderOffer1 = new TenderOffer();
