@@ -10,6 +10,6 @@ public class PageController {
 
     @RequestMapping("/")
     public String getIndexPage(ModelMap model) {
-        return "index";
+        return "login";
     }
 }
