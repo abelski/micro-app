@@ -8,20 +8,50 @@
                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 
-       <http access-denied-page="/WEB-INF/error403.jsp">
-              <!--    <intercept-url pattern="/output*" access="ROLE_USER,ROLE_ANONYMOUS"/>  -->
+      <!-- <http access-denied-page="/WEB-INF/error403.jsp">
+              &lt;!&ndash;    <intercept-url pattern="/output*" access="ROLE_USER,ROLE_ANONYMOUS"/>  &ndash;&gt;
               <intercept-url pattern="/index*" access="ROLE_USER, ROLE_ANONYMOUS"/>
            <intercept-url pattern="/login*" access="ROLE_USER, ROLE_ANONYMOUS"/>
-             <!-- <intercept-url pattern="/view*" access="ROLE_USER"/>
+           <intercept-url pattern="/index" access="ROLE_USER, ROLE_ANONYMOUS"/>
+           <intercept-url pattern="/login" access="ROLE_USER, ROLE_ANONYMOUS"/>
+             &lt;!&ndash; <intercept-url pattern="/view*" access="ROLE_USER"/>
               <intercept-url pattern="/delete*" access="ROLE_ADMIN"/>
-              <intercept-url pattern="/edit*" access="ROLE_ADMIN"/>-->
-              <form-login login-page="/WEB-INF/login.jsp" default-target-url="/index" authentication-failure-url="/login.jsp?error=true"/>
-              <logout logout-url="/logout" logout-success-url="/index"/>
+              <intercept-url pattern="/edit*" access="ROLE_ADMIN"/>&ndash;&gt;
+              <form-login login-page="/WEB-INF/index.jsp"
+                          default-target-url="/"
+                          login-processing-url="/j_spring_security_check"
+                          authentication-failure-url="/index.jsp?error=true"
+                          username-parameter="j_username"
+                          password-parameter="j_password"/>
+              <logout logout-url="/index" logout-success-url="/index"/>
               <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
               <remember-me/>
-       </http>
+       </http>-->
 
-       <authentication-manager>
+    <http access-denied-page="/error403.jsp">
+        <intercept-url pattern="/index*" access="ROLE_USER,ROLE_ANONYMOUS" />
+        <!--<intercept-url pattern="/add*" access="ROLE_USER" />
+        <intercept-url pattern="/delete/*" access="ROLE_ADMIN" />-->
+        <form-login login-page="/login.jsp" default-target-url="/index"
+                    authentication-failure-url="/login.jsp?error=true" />
+        <logout logout-url="/logout" logout-success-url="/index" />
+
+        <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
+        <remember-me />
+    </http>
+
+    <!--<http>
+        <form-login login-page="/login"
+                    username-parameter="j_username"
+                    password-parameter="j_password"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-failure-url="/login?login_error=1"
+                />
+    </http>-->
+
+
+
+    <authentication-manager>
               <authentication-provider>
                      <user-service>
                             <user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>

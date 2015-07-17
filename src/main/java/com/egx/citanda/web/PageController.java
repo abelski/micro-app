@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 
-    @RequestMapping("/")
-    public String getIndexPage(ModelMap model) {
-        return "login";
+    @RequestMapping("/index")
+    public String getLoginPage(ModelMap model) {
+        return "index";
     }
+
+    /*@RequestMapping("/index")
+    public String getIndexPage(ModelMap model) {
+        return "index";
+    }*/
 }
