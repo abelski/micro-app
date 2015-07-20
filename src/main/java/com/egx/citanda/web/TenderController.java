@@ -1,5 +1,6 @@
 package com.egx.citanda.web;
 
+import com.egx.citanda.UserService;
 import com.egx.citanda.dao.IClientDao;
 import com.egx.citanda.dao.ITenderDao;
 import com.egx.citanda.dao.ITenderOfferDao;
@@ -37,7 +38,7 @@ public class TenderController {
     public void save(@RequestBody Tender tender) {
         System.out.println(tender);
         tender.getTenderRequest().setStatus(TenderRequestStatus.STARTED);
-        tender.getTenderRequest().setFrom(clientDao.findAll().iterator().next());
+        tender.getTenderRequest().setFrom(UserService.getAuthUser());
         tenderDao.save(tender);
     }
 
