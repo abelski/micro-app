@@ -9,5 +9,6 @@ import java.util.List;
  * @author Artur Belski
  */
 public interface IClientDao extends PagingAndSortingRepository<Client, String> {
+    public Client findOneByUsername(String name);
 
 }

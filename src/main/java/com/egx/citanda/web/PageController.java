@@ -23,4 +23,14 @@ public class PageController {
     public String getClientPage(ModelMap model) {
         return "client";
     }
+
+    @RequestMapping("login")
+    public String getLoginPage(ModelMap map) {
+        return "login";
+    }
+
+    @RequestMapping("error403")
+    public String get403(ModelMap map) {
+        return "error403";
+    }
 }

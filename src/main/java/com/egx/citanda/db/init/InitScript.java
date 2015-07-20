@@ -22,8 +22,16 @@ public class InitScript {
         from.setName("Client1");
         from.getSubscribes().add("Stuff1");
         from.getSubscribes().add("Stuff2");
+        from.setPassword("1");
+        from.setUsername("1");
+        from.getAuthorities().add(Role.ROLE_ADMIN);
+        from.getAuthorities().add(Role.ROLE_USER);
+
         final com.egx.citanda.model.Client to = new com.egx.citanda.model.Client();
         to.setName("Client2");
+        to.setPassword("2");
+        to.setUsername("2");
+        to.getAuthorities().add(Role.ROLE_USER);
 
         mongoTemplate.save(from);
         mongoTemplate.save(to);

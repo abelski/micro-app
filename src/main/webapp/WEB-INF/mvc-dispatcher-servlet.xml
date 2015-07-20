@@ -6,60 +6,62 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
-    <context:component-scan base-package="com.egx.citanda"/>
+       <import resource="security.xml"/>
 
-    <context:annotation-config/>
+       <context:component-scan base-package="com.egx.citanda"/>
 
-    <mvc:resources mapping="/**" location="/WEB-INF/" />
+       <context:annotation-config/>
 
-    <mvc:annotation-driven/>
+       <mvc:resources mapping="/**" location="/WEB-INF/" />
 
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/"/>
-        <property name="suffix" value=".jsp"/>
-
-    </bean>
-
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="jsonMessageConverter"/>
-            </list>
-        </property>
-    </bean>
-
-    <!-- Configure bean to convert JSON to POJO and vice versa -->
-    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-    </bean>
+       <mvc:annotation-driven/>
 
 
-    <!-- MongoFactoryBean instance -->
-    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-        <property name="host" value="localhost"/>
-        <property name="port" value="27017"/>
-    </bean>
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix" value="/WEB-INF/"/>
+              <property name="suffix" value=".jsp"/>
+
+       </bean>
+
+       <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+              <property name="messageConverters">
+                     <list>
+                            <ref bean="jsonMessageConverter"/>
+                     </list>
+              </property>
+       </bean>
+
+       <!-- Configure bean to convert JSON to POJO and vice versa -->
+       <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+       </bean>
 
 
-    <!-- MongoTemplate instance -->
-    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="citanda"/>
-        <!--<constructor-arg name="userCredentials" ref="usc"/>-->
+       <!-- MongoFactoryBean instance -->
+       <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+              <property name="host" value="localhost"/>
+              <property name="port" value="27017"/>
+       </bean>
 
-    </bean>
 
-    <!--<bean name="usc" class="org.springframework.data.authentication.UserCredentials">-->
-    <!--<constructor-arg name="username" value="${db.user}"/>-->
-    <!--<constructor-arg name="password" value="${db.pass}"/>-->
-    <!--</bean>-->
+       <!-- MongoTemplate instance -->
+       <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+              <constructor-arg name="mongo" ref="mongo"/>
+              <constructor-arg name="databaseName" value="citanda"/>
+              <!--<constructor-arg name="userCredentials" ref="usc"/>-->
 
-    <mongo:repositories base-package="com.egx.citanda.dao"/>
+       </bean>
 
-    <bean id="mongobee" class="com.github.mongobee.Mongobee">
-        <property name="dbName" value="citanda"/>
-        <property name="enabled" value="true"/>
-        <property name="changeLogsScanPackage"
-                  value="com.egx.citanda.db.init"/>
-    </bean>
+       <!--<bean name="usc" class="org.springframework.data.authentication.UserCredentials">-->
+       <!--<constructor-arg name="username" value="${db.user}"/>-->
+       <!--<constructor-arg name="password" value="${db.pass}"/>-->
+       <!--</bean>-->
+
+       <mongo:repositories base-package="com.egx.citanda.dao"/>
+
+       <bean id="mongobee" class="com.github.mongobee.Mongobee">
+              <property name="dbName" value="citanda"/>
+              <property name="enabled" value="true"/>
+              <property name="changeLogsScanPackage"
+                        value="com.egx.citanda.db.init"/>
+       </bean>
 </beans>
