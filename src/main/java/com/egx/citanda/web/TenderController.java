@@ -45,7 +45,7 @@ public class TenderController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Iterable<Tender> search(@RequestBody FilterRequest request) {
         if (request == null || request.getSearch() == null) return getAll();
-        return tenderDao.findByTenderRequestFromNameLikeAndTenderRequestNameLike(request.getSearch(), request.getSearch());
+        return tenderDao.findByTenderRequestNameLike(request.getSearch());
     }
 
     @ResponseStatus(HttpStatus.OK)
