@@ -42,6 +42,16 @@ public class TenderController {
         tenderDao.save(tender);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/offer/{id}", method = RequestMethod.PUT)
+    public void putOffer(@RequestBody TenderOffer offer, String id) {
+        System.out.println(offer);
+        System.out.println(id);
+//        tender.getTenderRequest().setStatus(TenderRequestStatus.STARTED);
+//        tender.getTenderRequest().setFrom(UserService.getAuthUser());
+//        tenderDao.save(tender);
+    }
+
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Iterable<Tender> search(@RequestBody FilterRequest request) {

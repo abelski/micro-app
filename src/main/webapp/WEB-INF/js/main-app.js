@@ -47,10 +47,22 @@ angular.module('mainApp', [])
                 $scope.find();
             });
         };
+        $scope.putOffer = function (id, offer) {
+            console.log(id);
+            console.log(offer);
+            $http.put('tender/offer/'+id, offer).success(function () {
+                $scope.find();
+            });
+        };
 
         $http.get('tender/').success(function (data) {
             $scope.tenders = data.tenders
             $scope.tenders = data;
+
+            $http.get('client/active').success(function (data) {
+                $scope.activeClient = data;
+            });
+
         });
 
     }]).directive('tenderCard', function () {
@@ -67,6 +79,11 @@ angular.module('mainApp', [])
         return {
             restrict: 'E',
             templateUrl: 'directive/tender-modal.html'
+        };
+    }).directive('offerModal', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directive/offer-modal.html'
         };
     }).directive('appMenu', function () {
         return {

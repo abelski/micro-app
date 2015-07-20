@@ -12,52 +12,33 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 public class InitScript {
     @ChangeSet(order = "001", id = "addFewTenders", author = "abelski")
     public void set1(MongoTemplate mongoTemplate) {
-        final Tender tender = new Tender();
-        final TenderRequest tenderRequest = new TenderRequest();
-        tenderRequest.setName("New Some stuff");
-        tenderRequest.setCnt(12l);
-        tenderRequest.setStatus(TenderRequestStatus.STARTED);
-
-        final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();
-        from.setName("Client1");
-        from.getSubscribes().add("Stuff1");
-        from.getSubscribes().add("Stuff2");
-        from.setPassword("1");
-        from.setUsername("1");
-        from.getAuthorities().add(Role.ROLE_ADMIN);
-        from.getAuthorities().add(Role.ROLE_CONSUMER);
-
-        final com.egx.citanda.model.Client to = new com.egx.citanda.model.Client();
-        to.setName("Client2");
-        to.setPassword("2");
-        to.setUsername("2");
-        to.getAuthorities().add(Role.ROLE_SUPPLIER);
-
-        mongoTemplate.save(from);
-        mongoTemplate.save(to);
-
-        tenderRequest.setFrom(from);
 
 
-        tenderRequest.setTo(to);
+        final com.egx.citanda.model.Client client = new com.egx.citanda.model.Client();
+        client.setName("Client1");
+        client.getSubscribes().add("Stuff1");
+        client.getSubscribes().add("Stuff2");
+        client.setPassword("1");
+        client.setUsername("1");
+        client.getAuthorities().add(Role.ROLE_CONSUMER);
+
+        final com.egx.citanda.model.Client client1 = new com.egx.citanda.model.Client();
+        client1.setName("Client2");
+        client1.setPassword("2");
+        client1.setUsername("2");
+        client1.getAuthorities().add(Role.ROLE_SUPPLIER);
+
+        final com.egx.citanda.model.Client client2 = new com.egx.citanda.model.Client();
+        client2.setName("Client3");
+        client2.setPassword("3");
+        client2.setUsername("3");
+        client2.getAuthorities().add(Role.ROLE_ADMIN);
+
+        mongoTemplate.save(client);
+        mongoTemplate.save(client1);
+        mongoTemplate.save(client2);
 
 
-        tender.setTenderRequest(tenderRequest);
-        final TenderOffer tenderOffer = new TenderOffer();
-        tenderOffer.setName("New Some stuff");
-        tenderOffer.setCnt(12l);
-        tenderOffer.setFrom(from);
-        tenderOffer.setStatus(TenderOfferStatus.NOT_SELECTED);
-        tender.getTenderOffers().add(tenderOffer);
 
-        final TenderOffer tenderOffer1 = new TenderOffer();
-        tenderOffer1.setName("New Some stuff");
-        tenderOffer1.setCnt(12l);
-        tenderOffer1.setFrom(from);
-
-        mongoTemplate.save(tenderOffer);
-        mongoTemplate.save(tenderOffer1);
-        tender.getTenderOffers().add(tenderOffer1);
-        mongoTemplate.save(tender);
     }
 }

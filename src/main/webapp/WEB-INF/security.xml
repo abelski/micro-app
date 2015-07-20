@@ -9,10 +9,12 @@
 
 
     <http access-denied-page="/error403" >
-        <!--ОПРЕДЕЛЯЕМ ПРАВИЛА-->
+
         <intercept-url pattern="/login" access="ROLE_ANONYMOUS, ROLE_ADMIN, ROLE_CONSUMER, ROLE_SUPPLIER"/>
+
         <intercept-url pattern="/js/**" access="ROLE_ANONYMOUS, ROLE_ADMIN, ROLE_CONSUMER, ROLE_SUPPLIER"/>
         <intercept-url pattern="/css/**" access="ROLE_ANONYMOUS, ROLE_ADMIN, ROLE_CONSUMER, ROLE_SUPPLIER"/>
+
         <intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_CONSUMER, ROLE_SUPPLIER"/>
 
 

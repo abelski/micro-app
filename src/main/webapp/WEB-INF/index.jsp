@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">CITANDA</a>
+            <a class="navbar-brand">CITANDA {{activeClient.authorities}}</a>
         </div>
 
         <app-menu/>
@@ -65,11 +65,19 @@
             <div class="row">
                 <div class="panel-body">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal" ng-click="action='CREATE'; activeTender={}">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal"
+                            ng-show="activeClient.authorities.indexOf('ROLE_SUPPLIER')>-1"
+                            ng-click="action='CREATE'; activeTender={}">
                         Create
                     </button>
                 </div>
-                <tender-modal/>
+                <div class="row">
+                    <offer-modal/>
+                </div>
+                <div class="row">
+                    <tender-modal/>
+                </div>
+
             </div>
 
             <div class="row">

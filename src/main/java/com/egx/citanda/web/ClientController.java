@@ -1,7 +1,9 @@
 package com.egx.citanda.web;
 
+import com.egx.citanda.UserService;
 import com.egx.citanda.dao.IClientDao;
 import com.egx.citanda.model.Client;
+import com.egx.citanda.model.Role;
 import com.egx.citanda.web.request.FilterRequest;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,14 @@ public class ClientController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public void save(@RequestBody Client client) {
-        System.out.println(client);
         clientDao.save(client);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/active")
+    public Client active() {
+        final Client user = UserService.getAuthUser();
+        return user;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -45,6 +53,13 @@ public class ClientController {
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Collection<Client> getAll() {
+        final Client authUser = UserService.getAuthUser();
+        if (!authUser.getAuthorities().contains(Role.ROLE_ADMIN)) {
+            final ArrayList<Client> clients = new ArrayList<Client>();
+            clients.add(authUser);
+            return clients;
+        }
+
         final Iterable<Client> all = clientDao.findAll();
         final ArrayList<Client> clients = new ArrayList<Client>();
         for (Client client : all) {
