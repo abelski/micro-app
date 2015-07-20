@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Artur Belski
  */
@@ -18,4 +21,5 @@ public class Client {
    private String id;
    private String name;
    private IClientInfo clientInfo;
+   private List<String> subscribes = new ArrayList<String>();
 }

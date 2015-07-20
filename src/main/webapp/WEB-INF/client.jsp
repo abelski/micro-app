@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mainApp">
+<html lang="en" ng-app="clientApp">
 
 <head>
 
@@ -30,13 +30,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="js/angular.min.js"></script>
-    <script src="js/main-app.js"></script>
+    <script src="js/client-app.js"></script>
 
 </head>
 
 <body>
 
-<div id="wrapper" ng-controller="MainController">
+<div id="wrapper" ng-controller="ClientController">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -59,24 +59,15 @@
 
 
             <div class="row">
-                <tender-find/>
+                <br/>
             </div>
 
-            <div class="row">
-                <div class="panel-body">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal" ng-click="action='CREATE'; activeTender={}">
-                        Create
-                    </button>
-                </div>
-                <tender-modal/>
-            </div>
 
             <div class="row">
                 <div id="col-lg-12">
 
-                    <div class="col-lg-4" ng-repeat="tender in tenders ">
-                        <tender-card tender="tender"/>
+                    <div class="col-lg-4" ng-repeat="client in clients">
+                        <client-card></client-card>
                     </div>
 
                 </div>

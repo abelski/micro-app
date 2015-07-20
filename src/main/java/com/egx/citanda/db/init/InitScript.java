@@ -20,6 +20,8 @@ public class InitScript {
 
         final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();
         from.setName("Client1");
+        from.getSubscribes().add("Stuff1");
+        from.getSubscribes().add("Stuff2");
         final com.egx.citanda.model.Client to = new com.egx.citanda.model.Client();
         to.setName("Client2");
 
