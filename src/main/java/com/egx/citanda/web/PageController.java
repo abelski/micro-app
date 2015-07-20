@@ -1,5 +1,6 @@
 package com.egx.citanda.web;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 

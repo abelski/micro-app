@@ -83,12 +83,12 @@
             </div>
 
             <div class="row">
-                <%--<div class="panel-body">--%>
-                    <%--<!-- Button trigger modal -->--%>
-                    <%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal" ng-click="action='CREATE'; activeTender={}">--%>
-                        <%--Create--%>
-                    <%--</button>--%>
-                <%--</div>--%>
+                <div class="panel-body">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal" ng-click="action='CREATE'; activeTender={}">
+                        Create
+                    </button>
+                </div>
                 <tender-modal/>
             </div>
 

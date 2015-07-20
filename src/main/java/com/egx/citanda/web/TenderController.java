@@ -1,5 +1,6 @@
 package com.egx.citanda.web;
 
+import com.egx.citanda.dao.IClientDao;
 import com.egx.citanda.dao.ITenderDao;
 import com.egx.citanda.dao.ITenderOfferDao;
 import com.egx.citanda.model.Tender;
@@ -28,11 +29,16 @@ public class TenderController {
     @Autowired
     private ITenderOfferDao offerDao;
 
+    @Autowired
+    private IClientDao clientDao;
+
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public void save(@RequestBody Tender client) {
-        System.out.println(client);
-        tenderDao.save(client);
+    public void save(@RequestBody Tender tender) {
+        System.out.println(tender);
+        tender.getTenderRequest().setStatus(TenderRequestStatus.STARTED);
+        tender.getTenderRequest().setFrom(clientDao.findAll().iterator().next());
+        tenderDao.save(tender);
     }
 
     @ResponseBody

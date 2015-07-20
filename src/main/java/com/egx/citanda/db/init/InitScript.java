@@ -20,10 +20,15 @@ public class InitScript {
 
         final com.egx.citanda.model.Client from = new com.egx.citanda.model.Client();
         from.setName("Client1");
-        tenderRequest.setFrom(from);
-
         final com.egx.citanda.model.Client to = new com.egx.citanda.model.Client();
         to.setName("Client2");
+
+        mongoTemplate.save(from);
+        mongoTemplate.save(to);
+
+        tenderRequest.setFrom(from);
+
+
         tenderRequest.setTo(to);
 
 

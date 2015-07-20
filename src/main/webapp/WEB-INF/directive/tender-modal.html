@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="PeopleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="TenderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,11 +9,11 @@
             </div>
             <div ng-form="">
                 <div class="modal-body">
-                    <input ng-model="activePeople.id" type="hidden"/>
+                    <input ng-model="activeTender.id" type="hidden"/>
                     Name:
-                    <input  ng-required="true" ng-model="activePeople.name"/>
-                    Phone:
-                    <input  ng-required="true" ng-model="activePeople.clientInfo"/>
+                    <input  ng-required="true" ng-model="activeTender.tenderRequest.name"/>
+                    Count:
+                    <input  ng-required="true" ng-model="activeTender.tenderRequest.cnt"/>
 
 
                 </div>
