@@ -13,4 +13,8 @@ public class PageController {
     public String getIndexPage(ModelMap model) {
         return "index";
     }
+    @RequestMapping("client")
+    public String getClientPage(ModelMap model) {
+        return "client";
+    }
 }

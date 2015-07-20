@@ -68,6 +68,11 @@ angular.module('mainApp', [])
             restrict: 'E',
             templateUrl: 'directive/tender-modal.html'
         };
+    }).directive('appMenu', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directive/menu.html'
+        };
     })
 
 
