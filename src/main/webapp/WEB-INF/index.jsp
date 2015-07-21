@@ -66,7 +66,7 @@
                 <div class="panel-body">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TenderModal"
-                            ng-show="activeClient.authorities.indexOf('ROLE_SUPPLIER')>-1"
+                            ng-show="activeClient.authorities.indexOf('ROLE_CONSUMER')>-1"
                             ng-click="action='CREATE'; activeTender={}">
                         Create
                     </button>
