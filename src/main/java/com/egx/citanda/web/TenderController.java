@@ -4,17 +4,17 @@ import com.egx.citanda.UserService;
 import com.egx.citanda.dao.IClientDao;
 import com.egx.citanda.dao.ITenderDao;
 import com.egx.citanda.dao.ITenderOfferDao;
-import com.egx.citanda.model.Tender;
-import com.egx.citanda.model.TenderOffer;
-import com.egx.citanda.model.TenderOfferStatus;
-import com.egx.citanda.model.TenderRequestStatus;
+import com.egx.citanda.model.*;
 import com.egx.citanda.web.request.FilterRequest;
 import lombok.Data;
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -44,7 +44,7 @@ public class TenderController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/offer/{id}", method = RequestMethod.PUT)
-    public void putOffer(@RequestBody TenderOffer offer,@PathVariable String id) {
+    public void putOffer(@RequestBody TenderOffer offer, @PathVariable String id) {
         offer.setFrom(UserService.getAuthUser());
         offer.setStatus(TenderOfferStatus.NOT_SELECTED);
         offerDao.save(offer);
@@ -55,10 +55,12 @@ public class TenderController {
 
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public Iterable<Tender> search(@RequestBody FilterRequest request) {
+    public List<Tender> search(@RequestBody FilterRequest request) {
         if (request == null || request.getSearch() == null) return getAll();
-        return tenderDao.findByTenderRequestNameLike(request.getSearch());
+        final List<Tender> tenderList = tenderDao.findByTenderRequestNameLike(request.getSearch());
+        return filterByUser(tenderList, UserService.getAuthUser());
     }
+
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -68,8 +70,8 @@ public class TenderController {
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Iterable<Tender> getAll() {
-        return tenderDao.findAll();
+    public List<Tender> getAll() {
+        return filterByUser(IteratorUtils.toList(tenderDao.findAll().iterator()), UserService.getAuthUser());
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -101,5 +103,31 @@ public class TenderController {
                 offerDao.save(tenderOffer);
             }
         }
+    }
+
+    private List<Tender> filterByUser(List<Tender> tenderList, Client user) {
+
+        final ArrayList<Tender> tenders = new ArrayList<Tender>();
+        if (user.getAuthorities().contains(Role.ROLE_ADMIN)) {
+            tenders.addAll(tenderList);
+        } else if (user.getAuthorities().contains(Role.ROLE_SUPPLIER)) {
+            for (Tender tender : tenderList) {
+                final Iterator<TenderOffer> iterator = tender.getTenderOffers().iterator();
+                while (iterator.hasNext()) {
+                    final TenderOffer next = iterator.next();
+                    if (!next.getFrom().getId().equals(user.getId())) {
+                        iterator.remove();
+                    }
+                }
+                tenders.add(tender);
+            }
+        } else {
+            for (Tender tender : tenderList) {
+                if (tender.getTenderRequest().getFrom().getId().equals(user.getId())) {
+                    tenders.add(tender);
+                }
+            }
+        }
+        return tenders;
     }
 }
