@@ -44,12 +44,13 @@ public class TenderController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/offer/{id}", method = RequestMethod.PUT)
-    public void putOffer(@RequestBody TenderOffer offer, String id) {
-        System.out.println(offer);
-        System.out.println(id);
-//        tender.getTenderRequest().setStatus(TenderRequestStatus.STARTED);
-//        tender.getTenderRequest().setFrom(UserService.getAuthUser());
-//        tenderDao.save(tender);
+    public void putOffer(@RequestBody TenderOffer offer,@PathVariable String id) {
+        offer.setFrom(UserService.getAuthUser());
+        offer.setStatus(TenderOfferStatus.NOT_SELECTED);
+        offerDao.save(offer);
+        final Tender tender = tenderDao.findOne(id);
+        tender.getTenderOffers().add(offer);
+        tenderDao.save(tender);
     }
 
     @ResponseBody

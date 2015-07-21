@@ -27,7 +27,7 @@
                 <div class="panel panel-default"  >
                     <div class="panel-heading">
                         <a data-toggle="collapse" href="#requests{{tender.id}}">Offers</a>
-                        <button class="button btn-success pull-right" data-toggle="modal" data-target="#OfferModal"  ng-show="activeClient.authorities.indexOf('ROLE_SUPPLIER')==-1">PUT OFFER</button>
+                        <button class="button btn-success pull-right" data-toggle="modal" data-target="#OfferModal" ng-click="setCurrent(tender.id)" ng-show="activeClient.authorities.indexOf('ROLE_SUPPLIER')==-1">PUT OFFER</button>
                     </div>
                     <!-- .panel-heading -->
                     <div class="panel-body  panel-collapse" id="requests{{tender.id}}">

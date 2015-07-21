@@ -54,6 +54,10 @@ angular.module('mainApp', [])
                 $scope.find();
             });
         };
+        $scope.setCurrent = function (id) {
+            console.log(id);
+            $scope.currentTenderId = id;
+        };
 
         $http.get('tender/').success(function (data) {
             $scope.tenders = data.tenders

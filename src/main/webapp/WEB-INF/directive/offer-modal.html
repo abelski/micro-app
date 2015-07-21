@@ -10,7 +10,7 @@
             <div ng-form="">
                 <div class="modal-body">
                     <input ng-model="id" type="hidden"/>
-                   !! {{tender.id}}Name:
+                    Name:
                     <input  ng-required="true" ng-model="offer.name"/>
                     Count:
                     <input  ng-required="true" ng-model="offer.cnt"/>
@@ -18,7 +18,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="putOffer(tender.id, offer)">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="putOffer(currentTenderId, offer)">Save changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
